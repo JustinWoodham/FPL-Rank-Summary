@@ -6,11 +6,13 @@ import matplotlib.pyplot as plt
 
 url = 'https://fantasy.premierleague.com/api'
 
+#command line input of teamID, if you do not have a teamID, feel free to try with mine: 6740264
+print("FPL Rank Summary ")
+teamID = input("Please Enter your team ID: \n")
 
-# enter your teamID where it says 'TEAMID'
 # instructions on how to get your FPL team id can be found here: https://fpl.team/find-fpl-team-id/
-managerHistory = '/entry/6740264/history/'
-managerName = '/entry/6740264/'
+managerHistory = f'/entry/{teamID}/history/'
+managerName = f'/entry/{teamID}/'
 
 # getting requests for FPL data
 r = requests.get(url+managerHistory).json()
@@ -30,7 +32,7 @@ for week in sum['event']:
 data = {'Gameweek': gameWeeks, 'Gameweek Rank': gwRank}
 df = pd.DataFrame(data=data)
 # uncomment this to view your data in table form
-print(df)
+#print(df)
 
 
 # plotting and titling
