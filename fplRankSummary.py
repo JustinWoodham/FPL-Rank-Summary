@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 url = 'https://fantasy.premierleague.com/api'
 
-#command line input of teamID, if you do not have a teamID, feel free to try with mine: 6740264
+#command line input of teamID, if you do not have a teamID, feel free to try with mine: 8746052
 print("FPL Rank Summary ")
 teamID = input("Please Enter your team ID: \n")
 
