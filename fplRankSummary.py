@@ -3,6 +3,7 @@ import json
 import pandas as pd
 from pprint import pprint
 import matplotlib.pyplot as plt
+import math
 
 url = 'https://fantasy.premierleague.com/api'
 
@@ -40,7 +41,6 @@ plt.plot(df['Gameweek'], df['Gameweek Rank'])
 plt.title(f"FPL Rank for {fplName} this season") 
 
 # tick and axis altering
-plt.ticklabel_format(style='plain') # changes the ticks from scientific notation to plain numerical
 plt.ylim(bottom=0) # sets the range of the y-axis to start from 0
 plt.gca().invert_yaxis()  #inverts the rank so 0 is the top
 
@@ -48,10 +48,13 @@ plt.gca().invert_yaxis()  #inverts the rank so 0 is the top
 current_values = plt.gca().get_yticks()
 plt.gca().set_yticklabels(['{:,.0f}'.format(x) for x in current_values])
 
+#displays the x axis ticks (gameeweeks) as integers rather than decimals
+integer_ticks = range(math.floor(min(df['Gameweek'])), math.ceil(max(df['Gameweek']))+ 1)
+plt.xticks(integer_ticks)
+
 #labeling
 plt.xlabel("Gameweek")
 plt.ylabel("Rank")
 
 plt.grid()
 plt.show()
-
