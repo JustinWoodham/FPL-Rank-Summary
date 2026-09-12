@@ -9,7 +9,7 @@ url = 'https://fantasy.premierleague.com/api'
 
 #command line input of teamID, if you do not have a teamID, feel free to try with mine: 8746052
 print("FPL Rank Summary ")
-teamID = input("Please Enter your team ID: \n")
+teamID = input("Please Enter your team ID: ")
 
 # instructions on how to get your FPL team id can be found here: https://fpl.team/find-fpl-team-id/
 managerHistory = f'/entry/{teamID}/history/'
@@ -25,6 +25,9 @@ fplName = l['name']
 #forming a dataset for the FPL data
 gameWeeks = []
 gwRank = []
+#Dictionary to stored name for chips with display names on plot
+chipsDict = {'wildcard': 'Wildcard', 'freehit': 'Free Hit', 'bboost': 'Bench Boost', '3xc': 'Triple Captain'}
+
 for week in sum['event']:
     rank = sum.loc[sum['event'] == week, 'overall_rank'].item()
     gwRank.append(rank)
@@ -37,7 +40,7 @@ df = pd.DataFrame(data=data)
 
 
 # plotting and titling
-plt.plot(df['Gameweek'], df['Gameweek Rank'])
+plt.plot(df['Gameweek'], df['Gameweek Rank'], color = 'black')
 plt.title(f"FPL Rank for {fplName} this season") 
 
 # tick and axis altering
@@ -56,5 +59,19 @@ plt.xticks(integer_ticks)
 plt.xlabel("Gameweek")
 plt.ylabel("Rank")
 
+#annotation for chips used
+for chip in r['chips']:
+    name = chip['name']
+    event = chip['event']
+    rank = sum.loc[sum['event'] == week, 'overall_rank'].item()
+    plt.annotate(
+                 text = chipsDict.get(name), 
+                 color = 'C0', 
+                 fontsize= 10,
+                 xy = (event, rank), textcoords = 'offset points', 
+                 xytext = (0, 10),
+                 ha = 'center'
+                 )
+    print (name, event)
 plt.grid()
 plt.show()
