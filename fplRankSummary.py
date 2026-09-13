@@ -63,7 +63,7 @@ plt.ylabel("Rank")
 for chip in r['chips']:
     name = chip['name']
     event = chip['event']
-    rank = sum.loc[sum['event'] == week, 'overall_rank'].item()
+    rank = sum.loc[sum['event'] == event, 'overall_rank'].item()
     plt.annotate(
                  text = chipsDict.get(name), 
                  color = 'C0', 
@@ -72,6 +72,6 @@ for chip in r['chips']:
                  xytext = (0, 10),
                  ha = 'center'
                  )
-    print (name, event)
+    print (name, event, rank)
 plt.grid()
 plt.show()
