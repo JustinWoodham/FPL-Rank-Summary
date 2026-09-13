@@ -9,7 +9,11 @@ url = 'https://fantasy.premierleague.com/api'
 
 #command line input of teamID, if you do not have a teamID, feel free to try with mine: 8746052
 print("FPL Rank Summary ")
-teamID = input("Please Enter your team ID: ")
+try:
+    teamID = int(input("Please Enter your team ID: "))
+except ValueError:
+    print("\nPlease enter an Interger ID")
+
 
 # instructions on how to get your FPL team id can be found here: https://fpl.team/find-fpl-team-id/
 managerHistory = f'/entry/{teamID}/history/'
