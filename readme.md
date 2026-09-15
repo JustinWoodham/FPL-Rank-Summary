@@ -1,6 +1,11 @@
 # FPL Rank Summary
 
 This Python 3.10 program uses the FPL API along with visualisation tools like Matplotlib to display your Gameweek rank over the season.
+The Graph will display:
+- Your Team name in the Title
+- Your rank each gameweek, the higher the graph the better
+- Chips used throughout the season
+
 
 ## Installation
 
